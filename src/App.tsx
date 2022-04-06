@@ -8,12 +8,12 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import store from './store/store';
-import ListaTema from './components/temas/ListaTema/ListaTema';
-import ListaPostagem from './components/postagens/ListaPostagem/ListaPostagem';
+import ListaTema from './components/temas/listaTema/ListaTema';
+import ListaPostagem from './components/postagens/listaPostagem/ListaPostagem';
 import CadastroPost from './components/postagens/CadastroPostagem/CadastroPost';
-import CadastroTema from './components/temas/CadastroTema/CadastroTema';
-import DeletarPostagem from './components/postagens/DeletarPostagem/DeletarPostagem';
-import DeletarTema from './components/temas/DeletarTema/DeletarTema';
+import CadastroTema from './components/temas/cadastroTema/CadastroTema';
+import DeletarPostagem from './components/postagens/deletarPostagem/DeletarPostagem';
+import DeletarTema from './components/temas/deletarTema/DeletarTema';
 import 'react-toastify/dist/ReactToastify.css'
 import './App.css';
 

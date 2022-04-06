@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AppBar, Box, Tab, Tabs, Typography } from '@material-ui/core';
 import { TabContext, TabPanel } from '@material-ui/lab';
-import ListaPostagem from '../ListaPostagem/ListaPostagem';
+import ListaPostagem from '../listaPostagem/ListaPostagem';
 import './TabPostagem.css';
 
 function TabPostagem() {
