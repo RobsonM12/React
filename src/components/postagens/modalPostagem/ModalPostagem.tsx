@@ -1,81 +1,75 @@
 import React from 'react'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Button, Box } from "@material-ui/core"
-import CloseIcon from '@material-ui/icons/Close';
 import Modal from '@material-ui/core/Modal';
-
-import CadastroPostagem from '../cadastroPostagem/CadastroPostagem';
-
+import CloseIcon from '@material-ui/icons/Close';
+import CadastroPost from '../CadastroPostagem/CadastroPost';
 import './ModalPostagem.css';
 
 function getModalStyle() {
-    const top = 50;
-    const left = 50;
+  const top = 50 ;
+  const left = 50;
 
-    return {
-        top: `${top}%`,
-        left: `${left}%`,
-        transform: `translate(-${top}%, -${left}%)`,
-    };
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
 }
 
 const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        paper: {
-            position: 'absolute',
-            width: 400,
-            backgroundColor: theme.palette.background.paper,
-            border: '2px solid #000',
-            boxShadow: theme.shadows[5],
-            padding: theme.spacing(2, 4, 3),
-        },
-    }),
+  createStyles({
+    paper: {
+      position: 'absolute',
+      width: 400,
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+    },
+  }),
 );
 
-function ModalPostagem() {
+function ModalPostagem () {
+  const classes = useStyles();
+  const [modalStyle] = React.useState(getModalStyle);
+  const [open, setOpen] = React.useState(false);
 
-    const classes = useStyles();
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
-    const [modalStyle] = React.useState(getModalStyle);
-    
-    const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-    const handleOpen = () => {
-        setOpen(true);
-    };
+  const body = (
+    <div style={modalStyle} className={classes.paper}>
+      <Box display="flex" justifyContent="flex-end" className="cursor">
+        <CloseIcon onClick={handleClose}/>
+      
+      </Box>
+      
+      <CadastroPost />
+      
+    </div>
+  );
 
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    const body = (
-        <div style={modalStyle} className={classes.paper}>
-            <Box display="flex" justifyContent="flex-end" className="cursor">
-                <CloseIcon onClick={handleClose} />
-
-            </Box>
-
-            <CadastroPostagem />
-
-        </div>
-    );
-
-    return (
-        <div>
-            <Button
-                variant="outlined"
-                className="btnModal"
-                onClick={handleOpen}>Nova Postagem</Button>
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-            >
-                {body}
-            </Modal>
-        </div>
-    )
+  return (
+    <div>
+      <Button
+        variant="outlined"
+        className="btnModal"
+        onClick={handleOpen}>Nova Postagem</Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        {body}
+      </Modal>
+    </div>
+  );
 }
-
 export default ModalPostagem

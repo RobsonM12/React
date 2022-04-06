@@ -1,7 +1,8 @@
 import React, { ChangeEvent, useState, useEffect } from 'react'
 import { Box, Button, Grid, TextField, Typography } from '@material-ui/core'
 import { Link, useHistory } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
+import { useDispatch } from 'react-redux'
+import { addToken } from '../../store/tokens/actions'
 
 import { login } from '../../services/Service';
 import UserLogin from '../../models/UserLogin';
@@ -10,42 +11,45 @@ import './Login.css';
 
 function Login() {
 
-    let history = useHistory()
-
-    const [token, setToken] = useLocalStorage('token')
-
+    let history = useHistory();
+    const dispatch = useDispatch()
+    const [token, setToken] = useState('');
     const [userLogin, setUserLogin] = useState<UserLogin>({
         id: 0,
-        nome: "",
-        usuario: "",
-        senha: "",
-        foto: "",
-        token: ""
+        usuario: '',nome:'',foto:'',
+        senha: '',
+        token: ''
     })
 
-    useEffect(() => {
-        if(token !== ""){
-            history.push('/home')
-        }
-    }, [token])
+    //utilizada para atualziar a model quando o usuário digitar os dados
+    //[e.target.name] : e.target.value captura o valor digitado pelo usuário
+    function updateModel(e: ChangeEvent<HTMLInputElement>) {
 
-    function updatedModel(e: ChangeEvent<HTMLInputElement>) {
         setUserLogin({
             ...userLogin,
-            [e.target.name]: e.target.value           
+            [e.target.name]: e.target.value
         })
     }
 
-    async function onSubmit(e: ChangeEvent<HTMLFormElement>){
-        e.preventDefault()
+    useEffect(
+        () => {
+            if (token != '') {
+                dispatch(addToken(token))
+                history.push('/home')
+            }
+        }, [token]
+    )
 
+    async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
+        //impede que o botão atualize a tela
+        e.preventDefault();
         try {
             await login(`/usuarios/logar`, userLogin, setToken)
-            alert("Usuário logado com sucesso")
-
+            alert('usuário logado!');
         } catch (error) {
-            alert("Dados do usuário inconsistentes")
+            alert('dados incorretor. erro ao logar!');
         }
+
     }
 
     return (
@@ -56,8 +60,8 @@ function Login() {
                     <form onSubmit={ onSubmit }>
                         <Typography variant='h3' gutterBottom color='textPrimary' component='h3' align='center' className='textos1'>Entrar</Typography>
 
-                        <TextField value={ userLogin.usuario } onChange={ (e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='usuario' label='usuário' variant='outlined' name='usuario' margin='normal' fullWidth />
-                        <TextField value={ userLogin.senha } onChange={ (e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='senha' label='senha' variant='outlined' name='senha' margin='normal' type='password' fullWidth />
+                        <TextField value={ userLogin.usuario } onChange={ (e: ChangeEvent<HTMLInputElement>) => updateModel(e)} id='usuario' label='usuário' variant='outlined' name='usuario' margin='normal' fullWidth />
+                        <TextField value={ userLogin.senha } onChange={ (e: ChangeEvent<HTMLInputElement>) => updateModel(e)} id='senha' label='senha' variant='outlined' name='senha' margin='normal' type='password' fullWidth />
 
                         <Box marginTop={2} textAlign='center'>
 

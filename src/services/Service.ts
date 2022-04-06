@@ -1,39 +1,37 @@
-import axios from "axios";
-
+import axios from 'axios'
 export const api = axios.create({
-    baseURL: 'https://projetobp.herokuapp.com'
+    baseURL:'https://projetobp.herokuapp.com/'// postagens, {}, função
 })
 
-export const cadastroUsuario = async(url: any, dados: any, setDados: any) => {
+export const cadastroUsuario = async(url: string, dados: any, setDados: any) => {
     const resposta = await api.post(url, dados)
     setDados(resposta.data)
 }
-
-export const login = async(url: any, dados: any, setDados: any) => {
+export const login = async(url: string, dados: any, setDados: any) => {
     const resposta = await api.post(url, dados)
     setDados(resposta.data.token)
 }
 
-export const busca = async(url: any, setDados: any, header: any) => {
+export const busca = async(url: string, setDados: any,  header: any) => {
     const resposta = await api.get(url, header)
     setDados(resposta.data)
 }
 
-export const buscaId = async(url: any, setDados: any, header: any) => {
+export const buscaId = async(url: string, setDados: any,  header: any) => {
     const resposta = await api.get(url, header)
     setDados(resposta.data)
 }
 
-export const post = async(url: any, dados: any, setDados: any, header: any) => {
+export const post = async(url: string, dados: any, setDados: any,  header: any) => {
     const resposta = await api.post(url, dados, header)
     setDados(resposta.data)
 }
 
-export const put = async(url: any, dados: any, setDados: any, header: any) => {
+export const put = async(url: string, dados: any, setDados: any,  header: any) => {
     const resposta = await api.put(url, dados, header)
     setDados(resposta.data)
 }
 
-export const deleteId = async(url: any, header: any) => {
+export const deleteId = async(url: string, header: any) => {
     await api.delete(url, header)
 }

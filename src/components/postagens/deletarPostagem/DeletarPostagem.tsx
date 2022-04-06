@@ -1,33 +1,39 @@
-import React, { useEffect, useState } from 'react'
-import { Box, Button, Card, CardActions, CardContent, Typography } from '@material-ui/core';
-import { useHistory, useParams } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
-
-import Postagem from '../../../models/Postagem';
-import { buscaId, deleteId } from '../../../services/Service';
-
+import { useEffect, useState } from 'react'
+import { Typography, Button, Box, Card, CardActions, CardContent } from "@material-ui/core"
+import { useHistory, useParams } from 'react-router';
+import { useSelector } from "react-redux";
+import { toast } from 'react-toastify';
+import { buscaId, deleteId } from "../../../services/Service";
+import Postagem from '../../../model/Postagem';
+import { TokenState } from "../../../store/tokens/tokensReducer";
 import './DeletarPostagem.css';
 
 function DeletarPostagem() {
-
     let history = useHistory();
-
     const { id } = useParams<{ id: string }>();
-
-    const [token, setToken] = useLocalStorage('token');
-
-    const [post, setPosts] = useState<Postagem>()
+    const [posts, setPosts] = useState<Postagem>()
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+    )
 
     useEffect(() => {
         if (token === "") {
-            alert("Você precisa estar logado")
+            toast.error('Você precisa estar logado', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            })
             history.push("/login")
-
         }
     }, [token])
 
     useEffect(() => {
-        if (id !== '') {
+        if (id !== undefined) {
             findById(id)
         }
     }, [id])
@@ -40,16 +46,24 @@ function DeletarPostagem() {
         })
     }
 
-    async function sim() {
+    function sim() {
         history.push('/posts')
-        
-        await deleteId(`/postagens/${id}`, {
+        deleteId(`/postagens/${id}`, {
             headers: {
                 'Authorization': token
             }
         });
 
-        alert('Postagem deletada com sucesso');
+        toast.success('Postagem deletada com sucesso', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "colored",
+            progress: undefined,
+        })
     }
 
     function nao() {
@@ -66,7 +80,7 @@ function DeletarPostagem() {
                                 Deseja deletar a Postagem:
                             </Typography>
                             <Typography color="textSecondary" >
-                                {post?.titulo}
+                                Tema
                             </Typography>
                         </Box>
 
@@ -88,7 +102,7 @@ function DeletarPostagem() {
                 </Card>
             </Box>
         </>
-    )
+    );
 }
 
-export default DeletarPostagem
+export default DeletarPostagem;
