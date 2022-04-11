@@ -1,14 +1,36 @@
-.imagem2{
-    background-image:url(https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGJvb2t8ZW58MHx8MHx8&w=1000&q=80);
-    background-repeat:no-repeat;
-     width:100vh;
-    min-height: 100vh;
-    background-size:cover;
-    background-position:center;
+.background{
+    background-image: url("https://i.redd.it/28iwr251em581.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    width: 100vw;min-height: calc(100vh - 0)
+    
+
+    /* Calc: função do CSS que faz um calculo com medidas e retorno seu resultado. No caso
+            abaixo estamos calculando a largura da tela da pessoa menos a altura do Navbar*/
+}
+.background2{
+   /* background-image: url("https://i.redd.it/28iwr251em581.gif");*/
+    background: linear-gradient(36deg, #1fa4f1e3 8%, #ff288c90 80%)!important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    width: 100vw;min-height: calc(100vh- 80px )
+    
+
+    /* Calc: função do CSS que faz um calculo com medidas e retorno seu resultado. No caso
+            abaixo estamos calculando a largura da tela da pessoa menos a altura do Navbar*/
 }
 .textos2{
     font-weight: bold !important;
 }
 .btnCancelar{
     margin-right: 20px !important;
+}
+.t1{
+    font-weight: bold !important;
+    color: #FFFFFF !important;
+
 }

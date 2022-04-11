@@ -1,4 +1,4 @@
-.textos1{
+/*.textos1{
      font-weight: bold !important;
 
 }
@@ -12,4 +12,65 @@
 }
 .text-decorator-none{
      text-decoration: 'none';
+}*/
+.card{
+     /* !important: informa ao React que os Estilos do CSS são mais importantes do que
+                     os estilos padrões do Material UI 
+     
+         transparencia em cores hexadecial: ao final de uma cor hexadecimal, passe um valor
+         entre 1 a 99, informando o grau de transparencia da cor
+     */ 
+     background: linear-gradient(36deg, #1a71a490 8%, #ce455e90 80%)!important;
+ }
+ 
+ .form{
+     width: 270px;
+ }
+ 
+ .form-input{
+     width: 100%;
+ }
+ 
+ /*After e Before: são pseudo-classes que informam o comportamento de um ou vários 
+                 elementos Depois ou Antes de um clique ou interação da pessoa usuaária*/
+ .MuiInput-underline::after,
+ .MuiInput-underline::before{
+     border-bottom: 2px solid #FFFFFF!important;
+ }
+ 
+ 
+ .MuiFormLabel-root,
+ .MuiInputBase-root,
+ .MuiFormLabel-root.Mui-focused{
+     color: #FFFFFF;
+ }
+ 
+ .form-title{
+     color: #FFFFFF !important;
+     font-weight: bold;
+ }
+ 
+ .background{
+     background-image: url("https://i.redd.it/28iwr251em581.gif");
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: center;
+ 
+     width: 100vw;min-height: calc(100vh )
+     
+ 
+     /* Calc: função do CSS que faz um calculo com medidas e retorno seu resultado. No caso
+             abaixo estamos calculando a largura da tela da pessoa menos a altura do Navbar 
+             imagem01
+             https://cc-prod.scene7.com/is/image/CCProdAuthor/glitch-effect_P1_900x420?$pjpeg$&jpegSize=200&wid=900*/
+ }
+
+.texto2{
+     font-weight: bold !important;
+     color: #f7cccc;
+
+}
+.bt-cor{
+     color: #df1082;
+
 }

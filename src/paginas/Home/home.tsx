@@ -54,7 +54,7 @@ function Home() {
                 </Grid>
 
                 <Grid item xs={6} >
-              <img src='https://i.imgur.com/H88yIo2.png' alt="" width="500px" height="500px" />
+              <img src='https://balliodotblog.files.wordpress.com/2018/12/sinelines.gif' alt="" width="500px" height="300px" />
             </Grid>
 
             <Grid xs={12} className='postagens'>
