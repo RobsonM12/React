@@ -8,6 +8,8 @@ import './Navebar.css';
 import { toast } from 'react-toastify';
 
 
+
+
 function Navbar() {
   let history = useHistory()
   const dispatch = useDispatch()
@@ -34,16 +36,17 @@ var navBarComponent
 
   if (token !== '') {
     navBarComponent =
-      <AppBar position="static">
-        <Toolbar variant="dense">
+      <AppBar position="static" className='back'>
+        <Toolbar variant="dense" className='bar'>
          
 
           <Box display="flex" justifyContent="start">
             <Link to="/home" className="text-decorator-none">
               <Box mx={1} className="cursor">
-                <Typography variant="h5" color="inherit">
+                <Typography variant="h5" className='title'color="inherit">
                 Blog Pessoal
                 </Typography>
+                
               </Box>
             </Link>
 
